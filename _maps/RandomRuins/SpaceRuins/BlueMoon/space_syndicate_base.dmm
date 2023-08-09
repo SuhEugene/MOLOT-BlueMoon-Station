@@ -2628,8 +2628,7 @@
 /area/ruin/space/has_grav/bluemoon/deepspacetwo/service/diner)
 "kd" = (
 /obj/machinery/computer/turbine_computer{
-	dir = 1;
-	id = "ds2_turbine"
+	dir = 1
 	},
 /obj/structure/window/reinforced/survival_pod,
 /obj/structure/window/reinforced/survival_pod{
