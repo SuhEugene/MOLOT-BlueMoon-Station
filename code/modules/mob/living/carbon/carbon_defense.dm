@@ -302,7 +302,7 @@
 
 			if(HAS_TRAIT(H, TRAIT_DISTANT)) //No mood buff since you're not really liking it.
 				M.visible_message("<span class='warning'><b>[H]</b> резко осматривается на <b>[M]</b>, когда [ru_ego()] гладят по голове! Кажется, [ru_who()] раздражен[ru_a()]...</span>", \
-					"<span class='warning'>Вы гладите <b>[H]</b> по голове! Кажется, [ru_who()] глаза презрительно смещаются в вашу сторону...</span>")
+					"<span class='warning'>Вы гладите <b>[H]</b> по голове! Кажется, [ru_ego()] глаза презрительно смещаются в вашу сторону...</span>")
 				H.add_lust(-5) //Why are you touching me?
 				if(prob(5))
 					M.visible_message("<span class='warning'><b>[H]</b> быстро выкручивает руку <b>[M]</b>!</span>", \
