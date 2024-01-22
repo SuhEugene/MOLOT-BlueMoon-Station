@@ -5,6 +5,8 @@
 	write_log_user = "breastfed"
 	write_log_target = "was breastfed by"
 	interaction_sound = null
+	p13user_emote = PLUG13_EMOTE_BREASTS
+	p13target_strength = PLUG13_STRENGTH_LOW
 
 /datum/interaction/lewd/do_breastfeed/display_interaction(mob/living/user, mob/living/target)
 	var/message
@@ -63,6 +65,8 @@
 	write_log_user = "groped"
 	write_log_target = "was groped by"
 	interaction_sound = null
+	p13target_emote = PLUG13_EMOTE_BREASTS
+	p13target_strength = PLUG13_STRENGTH_NORMAL
 
 	additional_details = list(
 		list(
