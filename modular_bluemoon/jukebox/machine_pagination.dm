@@ -13,6 +13,7 @@
 	if (!length(cached_songs))
 		for(var/datum/track/S in SSjukeboxes.songs)
 			cached_songs += S.song_name
+		sort_list(cached_songs)
 
 	return cached_songs
 
