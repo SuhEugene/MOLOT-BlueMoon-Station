@@ -17,7 +17,7 @@
 	if (len_a == 1 && len_b == 1)
 		return text_a == text_b // TRUE и FALSE в бьёнде - 1 и 0
 
-	var/maxRange = FLOOR(max(len_a, len_b) / 2, 1) - 1
+	var/max_range = FLOOR(max(len_a, len_b) / 2, 1) - 1
 
 	var/list/symbols_matched_a = list()
 	var/list/symbols_matched_b = list()
@@ -27,7 +27,7 @@
 
 	var/matches = 0
 	for (var/i in 1 to len_a)
-		for (var/j in max(1, i - maxRange) to min(len_b, i + maxRange))
+		for (var/j in max(1, i - max_range) to min(len_b, i + max_range))
 			if (text_a[i] == text_b[j] && !symbols_matched_b[j])
 				symbols_matched_a[i] = TRUE
 				symbols_matched_b[j] = TRUE
@@ -47,6 +47,10 @@
 			if (text_a[i] != text_b[cursor++])
 				transpositions++
 
+	transpositions /= 2
+
+	// Модификация, чтоб был более точный поиск
+	// Ошибки в словах нам не нравятся
 	transpositions /= 2
 
 	return ((matches / len_a) + (matches / len_b) + ((matches - transpositions) / matches)) / 3
@@ -79,6 +83,13 @@
 		if (text_a[i] != text_b[i])
 			break
 		common_prefix++
+
+	// Модификация, чтоб был более точный поиск
+	// Люто увеличиваем similarity, если точно что-то совпало
+	if (len_a > len_b)
+		similarity += findtext_char(text_a, text_b) * 5
+	else
+		similarity += findtext_char(text_b, text_a) * 5
 
 	return similarity + (common_prefix * scaling_factor * (1 - similarity))
 
