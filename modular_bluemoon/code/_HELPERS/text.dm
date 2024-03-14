@@ -1,3 +1,4 @@
+#define symbol_at(text, index) copytext_char(text, index, index+1)
 /**
  * Calculate Jaro similarity between two strings.
  *
@@ -28,7 +29,7 @@
 	var/matches = 0
 	for (var/i in 1 to len_a)
 		for (var/j in max(1, i - max_range) to min(len_b, i + max_range))
-			if (text_a[i] == text_b[j] && !symbols_matched_b[j])
+			if (symbol_at(text_a, i) == symbol_at(text_b, j) && !symbols_matched_b[j])
 				symbols_matched_a[i] = TRUE
 				symbols_matched_b[j] = TRUE
 				matches++
@@ -44,7 +45,9 @@
 		if (symbols_matched_a[i])
 			while (!symbols_matched_b[cursor] && cursor < len_b)
 				cursor++
-			if (text_a[i] != text_b[cursor++])
+
+			cursor++
+			if (symbol_at(text_a, i) != symbol_at(text_b, cursor))
 				transpositions++
 
 	transpositions /= 2
@@ -80,7 +83,7 @@
 
 	var/common_prefix = 0
 	for (var/i in 1 to min(len_a, len_b, 4))
-		if (text_a[i] != text_b[i])
+		if (symbol_at(text_a, i) != symbol_at(text_b, i))
 			break
 		common_prefix++
 
@@ -114,7 +117,7 @@
 /proc/fuzzy_search(needle, list/haystack, key, amount=0, case_sensitive=FALSE)
 	var/list/weights = list()
 
-	if (case_sensitive) needle = lowertext(needle)
+	if (!case_sensitive) needle = lowertext(needle)
 
 	for (var/i in 1 to length(haystack))
 		var/candidate = haystack[i]
@@ -124,7 +127,7 @@
 
 		if (!candidate) continue
 
-		var/val = jaro_winkler_distance(needle, case_sensitive ? lowertext(candidate) : candidate, 0.15)
+		var/val = jaro_winkler_distance(needle, !case_sensitive ? lowertext(candidate) : candidate, 0.15)
 
 		weights[haystack[i]] = val
 
