@@ -186,12 +186,13 @@ export const Jukebox = (props, context) => {
                 ))}
               </Tabs>
             </Section>
-
-            <Stack align="center" justify="center">
-              <Stack.Item><Button icon="chevron-left" onClick={() => act('prev_page')} /></Stack.Item>
-              <Stack.Item>Страница {current_page}/{pages}</Stack.Item>
-              <Stack.Item><Button icon="chevron-right" onClick={() => act('next_page')} /></Stack.Item>
-            </Stack>
+            { pages > 1 ? (
+              <Stack align="center" justify="center">
+                <Stack.Item><Button icon="chevron-left" onClick={() => act('prev_page')} /></Stack.Item>
+                <Stack.Item>Страница {current_page}/{pages}</Stack.Item>
+                <Stack.Item><Button icon="chevron-right" onClick={() => act('next_page')} /></Stack.Item>
+              </Stack>
+            ) : (<Box />)}
           </Section>
         )}
         {tab === 2 && (
