@@ -166,25 +166,30 @@ export const Jukebox = (props, context) => {
             </Stack>
 
             <Section fluid>
-              <Tabs vertical style={{ 'pointer-events': 'none' }}>
-                {(songs || []).map((track) => (
-                  <Tabs.Tab key={track}>
-                    <Stack>
-                      <Stack.Item grow>{track}</Stack.Item>
-                      <Stack.Item>
-                        <Button
-                          icon="play"
-                          content="Queue"
-                          style={{ 'pointer-events': 'auto' }}
-                          onClick={() => {
-                            act('add_to_queue', { track });
-                          }}
-                        />
-                      </Stack.Item>
-                    </Stack>
-                  </Tabs.Tab>
-                ))}
-              </Tabs>
+              { songs && songs.length ? (
+                <Tabs vertical style={{ 'pointer-events': 'none' }}>
+                  {songs.map((track) => (
+                    <Tabs.Tab key={track}>
+                      <Stack>
+                        <Stack.Item grow>{track}</Stack.Item>
+                        <Stack.Item>
+                          <Button
+                            icon="play"
+                            content="Queue"
+                            style={{ 'pointer-events': 'auto' }}
+                            onClick={() => {
+                              act('add_to_queue', { track });
+                            }}
+                          />
+                        </Stack.Item>
+                      </Stack>
+                    </Tabs.Tab>
+                  ))}
+                </Tabs>
+              ) : (
+                <Box textColor="gray" textAlign="center" mt={2}>Треков нет</Box>
+              )}
+
             </Section>
             { pages > 1 ? (
               <Stack align="center" justify="center">

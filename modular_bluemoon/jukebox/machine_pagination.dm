@@ -19,7 +19,7 @@
 
 
 /obj/machinery/jukebox/proc/get_songs()
-	if (!queried_songs || !length(queried_songs))
+	if (isnull(queried_songs))
 		return get_cached_songs()
 	return queried_songs
 
