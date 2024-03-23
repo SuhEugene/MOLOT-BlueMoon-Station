@@ -1,7 +1,4 @@
-import { filter, map, sortBy, uniq } from 'common/collections';
-import { createSearch } from 'common/string';
-import { flow } from 'common/fp';
-import { useBackend, useLocalState, useSharedState } from '../backend';
+import { useBackend, useSharedState } from '../backend';
 import {
   Box,
   Button,
@@ -147,6 +144,13 @@ export const Jukebox = (props, context) => {
           <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
             Очередь
           </Tabs.Tab>
+          <Stack.Item grow />
+          <Button
+            color="transparent"
+            icon="shuffle"
+            tooltip="Случайная песня"
+            onClick={() => act('random_song')}
+          />
         </Tabs>
         {tab === 1 && (
           <Section fluid vertical>
