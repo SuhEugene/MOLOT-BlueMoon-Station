@@ -141,8 +141,6 @@
 
 
 /proc/simple_search(needle, list/haystack, key, case_sensitive=TRUE)
-	if (!case_sensitive) needle = lowertext(needle)
-
 	var/list/winners = list()
 	for (var/i in 1 to length(haystack))
 		var/candidate = haystack[i]
@@ -152,8 +150,12 @@
 
 		if (!candidate) continue
 
-		if (!findtext_char(needle, !case_sensitive ? lowertext(candidate) : candidate))
-			continue
+		if (case_sensitive)
+			if (!findtextEx_char(candidate, needle))
+				continue
+		else
+			if (!findtext_char(candidate, needle))
+				continue
 
 		winners += haystack[i]
 
