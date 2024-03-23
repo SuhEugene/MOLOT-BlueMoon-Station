@@ -89,11 +89,6 @@
 	if(type == "telemetry")
 		analyze_telemetry(payload)
 		return TRUE
-	if(type == "doEmote")
-		if(isliving(client?.mob))
-			var/mob/living/L = client.mob
-			L.emote(payload)
-		return TRUE
 
 /**
  * public
