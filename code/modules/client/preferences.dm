@@ -762,7 +762,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<img src='[features["headshot_link1"]]' style='border: 1px solid black' width='140px' height='140px'>"
 					dat += "<br><br>"
 
-					dat += "<h2>Headshot 2 Image</h2>"
+					dat += "<h2>Headshot 3 Image</h2>"
 					dat += "<a href='?_src_=prefs;preference=headshot2'><b>Set Headshot 3 Image</b></a><br>"
 					if(features["headshot_link2"])
 						dat += "<img src='[features["headshot_link2"]]' style='border: 1px solid black' width='140px' height='140px'>"
