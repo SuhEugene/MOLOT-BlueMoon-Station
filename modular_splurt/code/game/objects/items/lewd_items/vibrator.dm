@@ -200,7 +200,7 @@ Code:
 								to_chat(U, span_love("[src] vibrates against your [G.name]!"))
 
 					U.handle_post_sex(intencity, null, src) //give pleasure
-					U.plug13_genital_emote(G, intensity * 5)
+					U.plug13_genital_emote(G, intencity * 5)
 					playsound(U.loc, 'modular_splurt/sound/lewd/vibrate.ogg', (intencity+5), 1, -1) //vibe intencity scaled up abit for sound
 
 
