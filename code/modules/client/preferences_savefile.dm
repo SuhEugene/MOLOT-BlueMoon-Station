@@ -976,6 +976,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Load prefs
 	S["job_preferences"] >> job_preferences
 
+	//Custom emote panel
 	S["custom_emote_panel"] >> custom_emote_panel
 
 	//Quirks
@@ -1586,6 +1587,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["job_preferences"] , job_preferences)
 	WRITE_FILE(S["hide_ckey"]		, hide_ckey)
 
+	//Custom emote panel
 	WRITE_FILE(S["custom_emote_panel"]	, custom_emote_panel)
 
 	//Quirks

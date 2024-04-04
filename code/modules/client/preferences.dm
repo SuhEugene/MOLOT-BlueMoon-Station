@@ -269,7 +269,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 "neckfire_color" = "ffffff"
 )
 
-	var/list/custom_emote_panel = list()
+	var/list/custom_emote_panel = list() //user custom emote panel
 
 	var/custom_speech_verb = "default" //if your say_mod is to be something other than your races
 	var/custom_tongue = "default" //if your tongue is to be something other than your races
@@ -674,15 +674,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						dat += "[TextPreview(html_encode(features["naked_flavor_text"]))]...<BR>"
 					//SPLURT edit end
-					dat += "<h2>Custom Emote Panel</h2>"
-					dat += "<a href='?_src_=prefs;preference=custom_emote_panel;task=input'><b>Set Custom Emotes</b></a><br>"
-					if(length(custom_emote_panel["meow"]) <= MAX_FLAVOR_PREVIEW_LEN)
-						if(!length(custom_emote_panel["meow"]))
-							dat += "\[...\]<BR>"
-						else
-							dat += "[html_encode(custom_emote_panel["meow"])]<BR>"
-					else
-						dat += "[TextPreview(html_encode(custom_emote_panel["meow"]))]...<BR>"
 					// BLUEMOON ADD START - пользовательский эмоут смерти
 					dat += "<h2>Custom Deathgasp</h2>"
 					dat += "<a href='?_src_=prefs;preference=custom_deathgasp;task=input'><b>Set Custom Deathgasp</b></a><br>"
@@ -2448,10 +2439,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						user.playsound_local(user, picked_deathsound_path, 60)
 					else
 						to_chat(user, "<span class='warning'>Вы выбрали беззвучный deathgasp или выбранный вами звук отсутствует!</span>")
-				if("custom_emote_panel")
-					var/msg = input(usr, "Панееелька", "Панелька", custom_emote_panel["meow"]) as message|null
-					if(!isnull(msg))
-						custom_emote_panel["meow"] = strip_html_simple(msg, MAX_DEATHGASP_LEN, TRUE)
 				// BLUEMOON ADD END
 				if("ooc_notes")
 					var/msg = stripped_multiline_input(usr, "Установите всегда видимые OOC-заметки, связанные с вашими предпочтениями.", "ООС-Заметки", html_decode(features["ooc_notes"]), MAX_FLAVOR_LEN, TRUE)
@@ -4194,6 +4181,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						random_character()
 						real_name = random_unique_name(gender)
 						save_character()
+					if(user?.client?.prefs?.custom_emote_panel) //custom emote panel is attached to the character
+						var/list/payload = user.client.prefs.custom_emote_panel
+						user.client.tgui_panel?.window.send_message("emotes/setList", payload)
 
 				if("tab")
 					if(href_list["tab"])

@@ -59,6 +59,7 @@
 				return
 
 			client.prefs.custom_emote_panel[emote_key] = emote_name
+			client.prefs.save_character(TRUE) //custom emote panel is attached to the character
 			emotes_send_list()
 
 			return TRUE
@@ -81,9 +82,11 @@
 			switch (action)
 				if ("Удалить")
 					if (emotes_remove(emote_key, old_emote_name))
+						client.prefs.save_character(TRUE)
 						emotes_send_list()
 				if ("Редактировать")
 					if (emotes_rename(emote_key, old_emote_name))
+						client.prefs.save_character(TRUE)
 						emotes_send_list()
 
 			return TRUE
@@ -115,8 +118,6 @@
 
 /datum/tgui_panel/proc/emotes_send_list()
 	var/list/payload = client.prefs.custom_emote_panel
-	if (!length(payload))
-		return
 	window.send_message("emotes/setList", payload)
 
 #undef TGUI_PANEL_MAX_EMOTES
