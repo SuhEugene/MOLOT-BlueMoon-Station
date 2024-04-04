@@ -22,7 +22,7 @@ import { setupPanelFocusHacks } from './panelFocus';
 import { pingMiddleware, pingReducer } from './ping';
 import { settingsMiddleware, settingsReducer } from './settings';
 import { telemetryMiddleware } from './telemetry';
-import { emotesReducer } from './emotes';
+import { emotesReducer } from './emotes'; // BLUEMOON ADD
 
 perf.mark('inception', window.performance?.timing?.navigationStart);
 perf.mark('init');
