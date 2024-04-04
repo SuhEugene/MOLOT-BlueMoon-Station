@@ -12,7 +12,7 @@ import { useGame } from './game';
 import { Notifications } from './Notifications';
 import { PingIndicator } from './ping';
 import { SettingsPanel, useSettings } from './settings';
-import { EmotePanel, useEmote } from './emote';
+import { EmotePanel, useEmotes } from './emotes';
 
 export const Panel = (props, context) => {
   // IE8-10: Needs special treatment due to missing Flex support
@@ -21,7 +21,7 @@ export const Panel = (props, context) => {
       <HoboPanel />
     );
   }
-  const emote = useEmote(context);
+  const emotes = useEmotes(context);
   const audio = useAudio(context);
   const settings = useSettings(context);
   const game = useGame(context);
@@ -48,12 +48,12 @@ export const Panel = (props, context) => {
               </Stack.Item>
               <Stack.Item>
                 <Button
-                  color="green"
-                  selected={emote.visible}
-                  icon="smile"
+                  color="grey"
+                  selected={emotes.visible}
+                  icon="asterisk"
                   tooltip="Emote Panel"
                   tooltipPosition="bottom-start"
-                  onClick={() => emote.toggle()} />
+                  onClick={() => emotes.toggle()} />
               </Stack.Item>
               <Stack.Item>
                 <Button
@@ -77,7 +77,7 @@ export const Panel = (props, context) => {
             </Stack>
           </Section>
         </Stack.Item>
-        {emote.visible && (
+        {emotes.visible && (
           <Stack.Item>
             <Section>
               <EmotePanel />
