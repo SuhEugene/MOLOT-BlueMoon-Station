@@ -1,6 +1,6 @@
 const initialState = {
   visible: false,
-  list: {}
+  list: {},
 };
 
 export const emotesReducer = (state = initialState, action) => {
