@@ -1,9 +1,6 @@
-import { useBackend, useLocalState } from 'tgui/backend';
-import { Button, Divider, Flex, Input, Section, Stack } from 'tgui/components';
+import { Button, Flex, Section } from 'tgui/components';
 import { sendMessage } from 'tgui/backend';
 import { useEmotes } from './hooks';
-import { selectEmotes } from './selectors';
-import { useSelector } from 'common/redux';
 
 export const EmotePanel = (props, context) => {
   const emotes = useEmotes(context);
