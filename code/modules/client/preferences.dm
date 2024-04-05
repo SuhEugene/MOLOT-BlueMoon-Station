@@ -4181,7 +4181,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						random_character()
 						real_name = random_unique_name(gender)
 						save_character()
-					if(user?.client?.prefs?.custom_emote_panel) //custom emote panel is attached to the character
+					if(user.client?.prefs) //custom emote panel is attached to the character
 						var/list/payload = user.client.prefs.custom_emote_panel
 						user.client.tgui_panel?.window.send_message("emotes/setList", payload)
 
