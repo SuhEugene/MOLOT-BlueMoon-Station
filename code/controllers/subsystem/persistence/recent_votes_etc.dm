@@ -8,6 +8,7 @@
 	var/average_threat = 50
 	var/list/saved_maps
 	var/last_dynamic_gamemode = "" //BLUEMOON ADDITION
+	var/static/is_roundtype_collected = FALSE // BLUEMOON ADD - НЕ СОХРАНЯЕТСЯ
 
 /datum/controller/subsystem/persistence/SaveServerPersistence()
 	. = ..()
@@ -23,6 +24,8 @@
 	LoadRecentDynamicType() //BLUEMOON ADDITION
 
 /datum/controller/subsystem/persistence/proc/CollectRoundtype()
+	if (is_roundtype_collected) return // BLUEMOON ADD
+
 	saved_modes[3] = saved_modes[2]
 	saved_modes[2] = saved_modes[1]
 	saved_modes[1] = SSticker.mode.config_tag
@@ -40,6 +43,8 @@
 	file_data["data"] = saved_chaos + average_threat
 	fdel(json_file)
 	WRITE_FILE(json_file, json_encode(file_data))
+
+	is_roundtype_collected = TRUE // BLUEMOON ADD
 
 /datum/controller/subsystem/persistence/proc/RecordMaps()
 	saved_maps = saved_maps?.len ? list("[SSmapping.config.map_name]") | saved_maps : list("[SSmapping.config.map_name]")

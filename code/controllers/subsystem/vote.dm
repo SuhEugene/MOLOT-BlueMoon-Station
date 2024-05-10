@@ -413,6 +413,7 @@ SUBSYSTEM_DEF(vote)
 				if(SSmapping.changemap(config.maplist[.]))
 					to_chat(world, "<span class='boldannounce'>The map vote has chosen [VM.map_name] for next round!</span>")
 			if("transfer") // austation begin -- Crew autotransfer vote
+				SSpersistence.CollectRoundtype() // BLUEMOON ADD - Чтоб при первом же результате воута сохранился режим
 				if(. == VOTE_TRANSFER)
 					SSshuttle.autoEnd()
 					var/obj/machinery/computer/communications/C = locate() in GLOB.machines
